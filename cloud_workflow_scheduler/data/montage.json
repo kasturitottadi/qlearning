@@ -1,0 +1,32 @@
+{
+  "workflow": {
+    "name": "Montage_Small",
+    "tasks": [
+      {"id": "mProjectPP_0",   "cpu_mips": 2000, "ram_mb": 512,  "file_size_mb": 15.0, "runtime_s": 3.2},
+      {"id": "mProjectPP_1",   "cpu_mips": 2000, "ram_mb": 512,  "file_size_mb": 15.0, "runtime_s": 3.1},
+      {"id": "mDiffFit_0",     "cpu_mips": 1500, "ram_mb": 256,  "file_size_mb": 5.0,  "runtime_s": 1.8},
+      {"id": "mDiffFit_1",     "cpu_mips": 1500, "ram_mb": 256,  "file_size_mb": 5.0,  "runtime_s": 2.0},
+      {"id": "mConcatFit",     "cpu_mips": 1000, "ram_mb": 128,  "file_size_mb": 2.0,  "runtime_s": 0.9},
+      {"id": "mBgModel",       "cpu_mips": 3000, "ram_mb": 1024, "file_size_mb": 8.0,  "runtime_s": 5.0},
+      {"id": "mBackground_0",  "cpu_mips": 2500, "ram_mb": 512,  "file_size_mb": 20.0, "runtime_s": 4.1},
+      {"id": "mBackground_1",  "cpu_mips": 2500, "ram_mb": 512,  "file_size_mb": 20.0, "runtime_s": 4.3},
+      {"id": "mImgtbl",        "cpu_mips": 800,  "ram_mb": 128,  "file_size_mb": 1.0,  "runtime_s": 0.5},
+      {"id": "mAdd",           "cpu_mips": 4000, "ram_mb": 2048, "file_size_mb": 50.0, "runtime_s": 7.2}
+    ],
+    "edges": [
+      {"src": "mProjectPP_0",  "dst": "mDiffFit_0",    "data_mb": 10.0},
+      {"src": "mProjectPP_1",  "dst": "mDiffFit_1",    "data_mb": 10.0},
+      {"src": "mDiffFit_0",    "dst": "mConcatFit",    "data_mb": 3.0},
+      {"src": "mDiffFit_1",    "dst": "mConcatFit",    "data_mb": 3.0},
+      {"src": "mConcatFit",    "dst": "mBgModel",      "data_mb": 1.5},
+      {"src": "mBgModel",      "dst": "mBackground_0", "data_mb": 5.0},
+      {"src": "mBgModel",      "dst": "mBackground_1", "data_mb": 5.0},
+      {"src": "mBackground_0", "dst": "mImgtbl",       "data_mb": 15.0},
+      {"src": "mBackground_1", "dst": "mImgtbl",       "data_mb": 15.0},
+      {"src": "mImgtbl",       "dst": "mAdd",          "data_mb": 0.5},
+      {"src": "mProjectPP_0",  "dst": "mAdd",          "data_mb": 12.0},
+      {"src": "mProjectPP_1",  "dst": "mAdd",          "data_mb": 12.0}
+    ]
+  }
+}
+

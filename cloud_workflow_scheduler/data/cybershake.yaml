@@ -1,0 +1,50 @@
+workflow:
+  name: CyberShake_Small
+  tasks:
+    - id: seisSynth_0
+      cpu_mips: 2500
+      ram_mb: 512
+      file_size_mb: 10.0
+      runtime_s: 4.5
+
+    - id: seisSynth_1
+      cpu_mips: 2500
+      ram_mb: 512
+      file_size_mb: 10.0
+      runtime_s: 4.7
+
+    - id: peakValCalc_0
+      cpu_mips: 1500
+      ram_mb: 256
+      file_size_mb: 3.0
+      runtime_s: 2.0
+
+    - id: peakValCalc_1
+      cpu_mips: 1500
+      ram_mb: 256
+      file_size_mb: 3.0
+      runtime_s: 1.9
+
+    - id: zipFiles
+      cpu_mips: 800
+      ram_mb: 128
+      file_size_mb: 50.0
+      runtime_s: 1.2
+
+  edges:
+    - src: seisSynth_0
+      dst: peakValCalc_0
+      data_mb: 8.0
+
+    - src: seisSynth_1
+      dst: peakValCalc_1
+      data_mb: 8.0
+
+    - src: peakValCalc_0
+      dst: zipFiles
+      data_mb: 2.0
+
+    - src: peakValCalc_1
+      dst: zipFiles
+      data_mb: 2.0
+
